@@ -19,7 +19,7 @@ from mmedit.utils import collect_env, get_root_logger
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train an editor')
-    parser.add_argument('config', help='train config file path')
+    parser.add_argument('--config', default = "configs/restorers/real_esrgan/realesrgan_c64b23g32_12x4_lr1e-4_400k_anime.py", help='train config file path')
     parser.add_argument('--work-dir', help='the dir to save logs and models')
     parser.add_argument(
         '--resume-from', help='the checkpoint file to resume from')
@@ -137,7 +137,7 @@ def main():
         datasets,
         cfg,
         distributed=distributed,
-        validate=(not args.no_validate),
+        validate=(not args.no_validate),  # (not args.no_validate)
         timestamp=timestamp,
         meta=meta)
 
