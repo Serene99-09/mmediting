@@ -122,3 +122,4 @@ def restoration_video_inference(model,
                               test_mode=True)['output'].cpu())
                 result = torch.cat(result, dim=1)
     return result
+

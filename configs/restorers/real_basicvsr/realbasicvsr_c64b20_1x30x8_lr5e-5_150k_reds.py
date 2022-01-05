@@ -10,7 +10,7 @@ model = dict(
         mid_channels=64,
         num_propagation_blocks=20,
         num_cleaning_blocks=20,
-        dynamic_refine_thres=255,  # change to 5 for test
+        dynamic_refine_thres=5,  # test: 5 ; train: 255
         spynet_pretrained=None,
         is_fix_cleaning=False,
         is_sequential_cleaning=False),
@@ -48,7 +48,7 @@ model = dict(
 
 # model training and testing settings
 train_cfg = dict()
-test_cfg = dict(metrics=['PSNR'], crop_border=0)  # change to [] for test
+test_cfg = dict(metrics=[], crop_border=0)  # test: []; train: ['PSNR']
 
 # dataset settings
 train_dataset_type = 'SRFolderMultipleGTDataset'
