@@ -114,14 +114,14 @@ if __name__ == '__main__':
     """
 
     video_demo = VideoDemo(
-        input_left_dir='VSR/TheBoyAndTheBeast_Trim_Trim/lq_upX4',
-        input_right_dir='VSR/TheBoyAndTheBeast_Trim_Trim/out',
-        output_path='demo_video.mp4',
-        start_frame=5,
-        pause_frame=15,
-        repeat_when_pause=25,
-        slide_step=100,
-        line_width=10,
-        frame_rate=25,
+        input_left_dir='VSR/SpiritedAway_Trim/lq_upX4',
+        input_right_dir='VSR/SpiritedAway_Trim/out',
+        output_path='VSR/SpiritedAway_Trim/demo_video_new.mp4',
+        start_frame=0,
+        pause_frame=5, 
+        repeat_when_pause=0,
+        slide_step=20,
+        line_width=5,
+        frame_rate=10,
     )
     video_demo()

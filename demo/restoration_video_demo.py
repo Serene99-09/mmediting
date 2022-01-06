@@ -17,8 +17,8 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Restoration demo')
     parser.add_argument('--config', default='configs/restorers/real_basicvsr/realbasicvsr_c64b20_1x30x8_lr5e-5_150k_reds.py', help='test config file path')
     parser.add_argument('--checkpoint', default='realbasicvsr_c64b20_1x30x8_lr5e-5_150k_reds_20211104-52f77c2c.pth', help='checkpoint file')
-    parser.add_argument('--input_dir', default='VSR/TheBoyAndTheBeast_Trim_Trim_downX4.mp4', help='directory of the input video')
-    parser.add_argument('--output_dir', default='VSR/TheBoyAndTheBeast_Trim_Trim/out', help='directory of the output video')
+    parser.add_argument('--input_dir', default='VSR/SpiritedAway_Trim/SpiritedAway_Trim_downX4.mp4', help='directory of the input video')
+    parser.add_argument('--output_dir', default='VSR/SpiritedAway_Trim/out', help='directory of the output video')
     parser.add_argument(
         '--start_idx',
         type=int,
@@ -36,7 +36,7 @@ def parse_args():
     parser.add_argument(
         '--max_seq_len',
         type=int,
-        default=None, # None
+        default=20, # None
         help='maximum sequence length if recurrent framework is used')
     parser.add_argument('--device', type=int, default=0, help='CUDA device id')
     args = parser.parse_args()
