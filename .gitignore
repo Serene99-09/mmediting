@@ -114,9 +114,17 @@ work_dirs/
 /data/
 /data
 mmedit/.mim
+/inference/
 
 # Pytorch
 *.pth
+# Images
+*.jpg
+*.png
+*.zip
+*.mp4
+*.mkv
+*.JPEG
 
 # onnx and tensorrt
 *.onnx

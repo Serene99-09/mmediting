@@ -33,7 +33,7 @@ def parse_args():
         default=1,
         help='number of gpus to use '
         '(only applicable to non-distributed training)')
-    parser.add_argument('--seed', type=int, default=None, help='random seed')
+    parser.add_argument('--seed', type=int, default=0, help='random seed')
     parser.add_argument(
         '--deterministic',
         action='store_true',
@@ -137,7 +137,7 @@ def main():
         datasets,
         cfg,
         distributed=distributed,
-        validate=(not args.no_validate),  # (not args.no_validate)
+        validate=(args.no_validate),  # (not args.no_validate)
         timestamp=timestamp,
         meta=meta)
 

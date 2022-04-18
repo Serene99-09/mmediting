@@ -78,7 +78,10 @@ class SRFolderDataset(BaseSRDataset):
             f'{len(lq_paths)}, {len(gt_paths)}.')
         for gt_path in gt_paths:
             basename, ext = osp.splitext(osp.basename(gt_path))
-            basename = basename[:-4]
+            # if "Disney" in basename or "Japan" in basename:
+            #     basename = basename
+            # else:
+            #     basename = basename[:-4]
             lq_path = osp.join(self.lq_folder,
                                (f'{self.filename_tmpl.format(basename)}'
                                 f'{ext}'))

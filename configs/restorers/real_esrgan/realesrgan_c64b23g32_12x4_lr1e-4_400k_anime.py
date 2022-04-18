@@ -1,4 +1,4 @@
-exp_name = 'realesrgan_c64b23g32_12x4_lr1e-4_400k_anime'
+exp_name = 'EXP4_anime_atd12k_selfie_pixar_lr1e-5_400k'
 # 'realesrgan_c64b23g32_12x4_lr1e-4_400k_df2k_ost'
 scale = 4
 # model settings
@@ -46,7 +46,7 @@ train_cfg = dict(start_iter=1000000)
 test_cfg = dict(metrics=['PSNR', 'SSIM'], crop_border=0)
 
 # dataset settings
-train_dataset_type = 'SRAnnotationDataset'
+train_dataset_type = 'SRWeightDataset'
 val_dataset_type = 'SRFolderDataset'
 train_pipeline = [
     dict(
@@ -228,11 +228,12 @@ data = dict(
         times=1,
         dataset=dict(
             type=train_dataset_type,
-            lq_folder='data/RealESRGAN_selfie_2048/GT',
-            gt_folder='data/RealESRGAN_selfie_2048/GT',
-            ann_file='data/RealESRGAN_selfie_2048/meta_info_selfie.txt',
+            lq_folder=['data/atd12k_train/GT', 'data/RealESRGAN_selfie_2048/GT', 'data/RealESRGAN_pixar_2048/GT'],
+            gt_folder=['data/atd12k_train/GT', 'data/RealESRGAN_selfie_2048/GT', 'data/RealESRGAN_pixar_2048/GT'],
+            ann_file=['data/atd12k_train/meta_info_atd12k.txt', 'data/RealESRGAN_selfie_2048/meta_info_selfie.txt', 'data/RealESRGAN_pixar_2048/meta_info_pixar.txt'],
             pipeline=train_pipeline,
-            scale=scale)),
+            scale=scale,
+            ratio=[0.25, 0.45, 0.3])),
     val=dict(
         type=val_dataset_type,
         lq_folder='data/selfie_test/bicLRx4',
@@ -242,8 +243,8 @@ data = dict(
         filename_tmpl='{}'),
     test=dict(
         type=val_dataset_type,
-        lq_folder='data/selfie_test/bicLRx4',
-        gt_folder='data/selfie_test/HR',
+        lq_folder='tmp_frames/org_frames',
+        gt_folder='tmp_frames/up_frames', # FAKE gt 
         pipeline=val_pipeline,
         scale=scale,
         filename_tmpl='{}'))
@@ -260,7 +261,7 @@ lr_config = dict(policy='Step', by_epoch=False, step=[20], gamma=1)  # 400000
 checkpoint_config = dict(interval=20, save_optimizer=True, by_epoch=False) # 5000
 evaluation = dict(interval=20, save_image=True) # 5000  (..., gpu_collect=True)
 log_config = dict(
-    interval=100,
+    interval=5,
     hooks=[
         dict(type='TextLoggerHook', by_epoch=False),
         dict(type='TensorboardLoggerHook'),
